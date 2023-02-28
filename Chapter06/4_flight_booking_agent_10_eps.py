@@ -287,7 +287,7 @@ class PPOAgent:
         """
         return self.env.key_action_map.get(int(action_2), "")
 
-    def train(self, max_episodes=1000):
+    def train(self, max_episodes=10):
         with writer.as_default():
             for ep in range(max_episodes):
                 state_batch = []

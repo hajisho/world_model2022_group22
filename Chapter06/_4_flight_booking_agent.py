@@ -289,7 +289,7 @@ class PPOAgent:
 
     def train(self, max_episodes=1000):
         #書き出し用のファイル作成########################
-        PATH = "./保存するpath"##########################保存するパスを指定
+        PATH = "./logfile"##########################保存するパスを指定
         with open(PATH, mode='w') as f:
             f.write("log\n")
         ########################
