@@ -288,6 +288,11 @@ class PPOAgent:
         return self.env.key_action_map.get(int(action_2), "")
 
     def train(self, max_episodes=1000):
+        #書き出し用のファイル作成########################
+        PATH = "./保存するpath"##########################保存するパスを指定
+        with open(PATH, mode='w') as f:
+            f.write("log\n")
+        ########################
         with writer.as_default():
             for ep in range(max_episodes):
                 state_batch = []
@@ -316,6 +321,11 @@ class PPOAgent:
                     print(
                         f"ep#:{ep} step#:{step_num} step_rew:{reward} action:{action_print} dones:{dones}"
                     )
+                    ########################
+                    with open(PATH, mode='a') as f:
+                        f.write(f"ep#:{ep} step#:{step_num} step_rew:{reward} action:{action_print} dones:{dones}"+"\n")
+                    ########################
+
                     done = np.all(dones)
                     if done:
                         next_state = prev_state
@@ -371,8 +381,25 @@ class PPOAgent:
                     state = next_state[0]
 
                 print(f"Episode#{ep} Reward:{episode_reward} Actions:{action_batch}")
+                ########################
+                with open(PATH, mode='a') as f:
+                    f.write(f"Episode#{ep} Reward:{episode_reward} Actions:{action_batch}"+"\n")
+                ########################
                 tf.summary.scalar("episode_reward", episode_reward, step=ep)
 
+
+                ########################
+                if ep % 20 == 0: #20エポックごとに保存
+                    self.actor.save("保存先のパス")###########保存先のパス
+                    self.ciritic.save("保存先のパス")###########保存先のパス
+                    """
+                    注意）
+                    動作確認してませんが、上記で動かない場合、actorのクラスではなく、モデルだけしか保存できないかもしれません。
+                    その場合、下記コードで動くと思います
+                    self.actor.model.save("保存先のパス")###########保存先のパス
+                    self.ciritic.model.save("保存先のパス")###########保存先のパス
+                    """
+                ########################
 
 if __name__ == "__main__":
     env_name = "MiniWoBBookFlightVisualEnv-v0"
