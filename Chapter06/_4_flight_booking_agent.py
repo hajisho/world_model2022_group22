@@ -287,7 +287,7 @@ class PPOAgent:
         """
         return self.env.key_action_map.get(int(action_2), "")
 
-    def train(self, max_episodes=1000):
+    def train(self, max_episodes=10):
         #書き出し用のファイル作成########################
         PATH = "./logfile"##########################保存するパスを指定
         with open(PATH, mode='w') as f:
