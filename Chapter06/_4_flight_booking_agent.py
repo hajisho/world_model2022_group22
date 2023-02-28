@@ -390,8 +390,8 @@ class PPOAgent:
 
                 ########################
                 if ep % 20 == 0: #20エポックごとに保存
-                    self.actor.save("保存先のパス")###########保存先のパス
-                    self.ciritic.save("保存先のパス")###########保存先のパス
+                    self.actor.save("saved_model/actor_model")###########保存先のパス
+                    self.ciritic.save("saved_model/critic_mode")###########保存先のパス
                     """
                     注意）
                     動作確認してませんが、上記で動かない場合、actorのクラスではなく、モデルだけしか保存できないかもしれません。
