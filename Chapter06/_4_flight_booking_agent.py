@@ -386,7 +386,7 @@ class PPOAgent:
                 with open(PATH, mode='a') as f:
                     f.write(f"Episode#{ep} Reward:{episode_reward} Actions:{action_batch}"+"\n")
                 ########################
-                tf.summary.scalar("episode_reward", episode_reward, step=ep)
+                # tf.summary.scalar("episode_reward", episode_reward, step=ep)
 
 
                 # ########################
@@ -407,5 +407,5 @@ if __name__ == "__main__":
     env = gym.make(env_name)
     cta_agent = PPOAgent(env)
     cta_agent.train()
-    cta_agent.actor.model.save(f"./critic_mode.h5")
-    cta_agent.critic.model.save(f"./critic_mode.h5")
+    # cta_agent.actor.model.save(f"./critic_mode.h5")
+    # cta_agent.critic.model.save(f"./critic_mode.h5")
