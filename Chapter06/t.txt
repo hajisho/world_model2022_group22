@@ -1,0 +1,113 @@
+If using Keras pass *_constraint arguments to layers.
+Traceback (most recent call last):
+  File "_4_flight_booking_agent.py", line 408, in <module>
+    cta_agent.train()
+  File "_4_flight_booking_agent.py", line 393, in train
+    self.actor.model.save("saved_model/actor_model")###########保存先のパス
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/keras/engine/network.py", line 1051, in save
+    save.save_model(self, filepath, overwrite, include_optimizer, save_format,
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/keras/saving/save.py", line 137, in save_model
+    saved_model_save.save(model, filepath, overwrite, include_optimizer,
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/keras/saving/saved_model/save.py", line 78, in save
+    save_lib.save(model, filepath, signatures, options)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/saved_model/save.py", line 950, in save
+    _, exported_graph, object_saver, asset_info = _build_meta_graph(
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/saved_model/save.py", line 1036, in _build_meta_graph
+    object_graph_proto = _serialize_object_graph(saveable_view,
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/saved_model/save.py", line 696, in _serialize_object_graph
+    _write_object_proto(obj, obj_proto, asset_file_def_index,
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/saved_model/save.py", line 737, in _write_object_proto
+    metadata=obj._tracking_metadata)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/keras/engine/base_layer.py", line 2742, in _tracking_metadata
+    return self._trackable_saved_model_saver.tracking_metadata
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/keras/saving/saved_model/base_serialization.py", line 54, in tracking_metadata
+    return json_utils.Encoder().encode(self.python_properties)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/keras/saving/saved_model/layer_serialization.py", line 41, in python_properties
+    return self._python_properties_internal()
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/keras/saving/saved_model/model_serialization.py", line 35, in _python_properties_internal
+    metadata = super(ModelSavedModelSaver, self)._python_properties_internal()
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/keras/saving/saved_model/network_serialization.py", line 33, in _python_properties_internal
+    metadata = super(NetworkSavedModelSaver, self)._python_properties_internal()
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/keras/saving/saved_model/layer_serialization.py", line 57, in _python_properties_internal
+    metadata.update(get_config(self.obj))
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/keras/saving/saved_model/layer_serialization.py", line 115, in get_config
+    config = generic_utils.serialize_keras_object(obj)['config']
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/keras/utils/generic_utils.py", line 270, in serialize_keras_object
+    config = instance.get_config()
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/site-packages/tensorflow/python/keras/engine/network.py", line 968, in get_config
+    return copy.deepcopy(get_network_config(self))
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 229, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 204, in _deepcopy_list
+    append(deepcopy(a, memo))
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 229, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 229, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 209, in _deepcopy_tuple
+    y = [deepcopy(a, memo) for a in x]
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 209, in <listcomp>
+    y = [deepcopy(a, memo) for a in x]
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 209, in _deepcopy_tuple
+    y = [deepcopy(a, memo) for a in x]
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 209, in <listcomp>
+    y = [deepcopy(a, memo) for a in x]
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 172, in deepcopy
+    y = _reconstruct(x, memo, *rv)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 269, in _reconstruct
+    state = deepcopy(state, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 229, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 172, in deepcopy
+    y = _reconstruct(x, memo, *rv)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 269, in _reconstruct
+    state = deepcopy(state, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 229, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 204, in _deepcopy_list
+    append(deepcopy(a, memo))
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 172, in deepcopy
+    y = _reconstruct(x, memo, *rv)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 269, in _reconstruct
+    state = deepcopy(state, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 229, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 172, in deepcopy
+    y = _reconstruct(x, memo, *rv)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 269, in _reconstruct
+    state = deepcopy(state, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 229, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 172, in deepcopy
+    y = _reconstruct(x, memo, *rv)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 269, in _reconstruct
+    state = deepcopy(state, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 229, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+  File "/home/admin/miniconda3/envs/tfrl-cookbook/lib/python3.8/copy.py", line 161, in deepcopy
+    rv = reductor(4)
+TypeError: cannot pickle '_thread.RLock' object
