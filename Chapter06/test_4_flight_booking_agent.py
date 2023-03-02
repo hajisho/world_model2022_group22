@@ -51,7 +51,7 @@ class Actor:
         self.weight_initializer = tf.keras.initializers.he_normal()
         self.eps = 1e-5
         self.model = self.nn_model()
-        # self.model.summary()  # Print a summary of the Actor model
+        self.model.summary()  # Print a summary of the Actor model
         self.opt = tf.keras.optimizers.Nadam(args.actor_lr)
 
     def nn_model(self):
@@ -386,7 +386,7 @@ class PPOAgent:
                 with open(PATH, mode='a') as f:
                     f.write(f"Episode#{ep} Reward:{episode_reward} Actions:{action_batch}"+"\n")
                 ########################
-                # tf.summary.scalar("episode_reward", episode_reward, step=ep)
+                tf.summary.scalar("episode_reward", episode_reward, step=ep)
 
 
                 # ########################
