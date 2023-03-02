@@ -388,21 +388,23 @@ class PPOAgent:
                 tf.summary.scalar("episode_reward", episode_reward, step=ep)
 
 
-                ########################
-                if ep % 20 == 0: #20エポックごとに保存
-                    self.actor.model.save(f"./saved_model/actor_model{ep}")###########保存先のパス
-                    self.critic.model.save(f"./saved_model/critic_mode{ep}")###########保存先のパス
-                    """
-                    注意）
-                    動作確認してませんが、上記で動かない場合、actorのクラスではなく、モデルだけしか保存できないかもしれません。
-                    その場合、下記コードで動くと思います
-                    self.actor.model.save("保存先のパス")###########保存先のパス
-                    self.critic.model.save("保存先のパス")###########保存先のパス
-                    """
-                ########################
+                # ########################
+                # if ep % 20 == 0: #20エポックごとに保存
+                #     self.actor.model.save(f"./saved_model/actor_model{ep}")###########保存先のパス
+                #     self.critic.model.save(f"./saved_model/critic_mode{ep}")###########保存先のパス
+                #     """
+                #     注意）
+                #     動作確認してませんが、上記で動かない場合、actorのクラスではなく、モデルだけしか保存できないかもしれません。
+                #     その場合、下記コードで動くと思います
+                #     self.actor.model.save("保存先のパス")###########保存先のパス
+                #     self.critic.model.save("保存先のパス")###########保存先のパス
+                #     """
+                # ########################
 
 if __name__ == "__main__":
     env_name = "MiniWoBBookFlightVisualEnv-v0"
     env = gym.make(env_name)
     cta_agent = PPOAgent(env)
     cta_agent.train()
+    cta_agent.actor.model.save(f"./saved_model/critic_mode")
+    cta_agent.critic.model.save(f"./saved_model/critic_mode")
