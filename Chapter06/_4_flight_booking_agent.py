@@ -51,7 +51,7 @@ class Actor:
         self.weight_initializer = tf.keras.initializers.he_normal()
         self.eps = 1e-5
         self.model = self.nn_model()
-        self.model.summary()  # Print a summary of the Actor model
+        # self.model.summary()  # Print a summary of the Actor model
         self.opt = tf.keras.optimizers.Nadam(args.actor_lr)
 
     def nn_model(self):
@@ -382,8 +382,9 @@ class PPOAgent:
 
                 print(f"Episode#{ep} Reward:{episode_reward} Actions:{action_batch}")
                 ########################
-                with open(PATH, mode='a') as f:
-                    f.write(f"Episode#{ep} Reward:{episode_reward} Actions:{action_batch}"+"\n")
+                if ep % 20 == 0:
+                    with open(f'./all_step/ep{ep}_steps', mode='a') as f:
+                        f.write(f"Episode#{ep} Reward:{episode_reward} Actions:{action_batch}"+"\n")
                 ########################
                 tf.summary.scalar("episode_reward", episode_reward, step=ep)
 
@@ -406,5 +407,6 @@ if __name__ == "__main__":
     env = gym.make(env_name)
     cta_agent = PPOAgent(env)
     cta_agent.train()
-    cta_agent.actor.model.save(f"./saved_model/critic_mode")
-    cta_agent.critic.model.save(f"./saved_model/critic_mode")
+    cta_agent.save()
+    cta_agent.actor.model.save(f"./saved_model/critic_mode.h5")
+    cta_agent.critic.model.save(f"./saved_model/critic_mode.h5")
