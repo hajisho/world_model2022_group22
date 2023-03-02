@@ -322,7 +322,7 @@ class PPOAgent:
                         f"ep#:{ep} step#:{step_num} step_rew:{reward} action:{action_print} dones:{dones}"
                     )
                     ########################
-                    if ep % 10 == 0:
+                    if ep % 100 == 0:
                         with open(f'ep{ep}_all_steps', mode='a') as f:
                             f.write(f"ep#:{ep} step#:{step_num} step_rew:{reward} action:{action_print} dones:{dones}"+"\n")
                     ########################
