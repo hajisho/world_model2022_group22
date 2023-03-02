@@ -322,8 +322,9 @@ class PPOAgent:
                         f"ep#:{ep} step#:{step_num} step_rew:{reward} action:{action_print} dones:{dones}"
                     )
                     ########################
-                    with open(PATH, mode='a') as f:
-                        f.write(f"ep#:{ep} step#:{step_num} step_rew:{reward} action:{action_print} dones:{dones}"+"\n")
+                    if ep % 10 == 0:
+                        with open(f'ep{ep}_all_steps', mode='a') as f:
+                            f.write(f"ep#:{ep} step#:{step_num} step_rew:{reward} action:{action_print} dones:{dones}"+"\n")
                     ########################
 
                     done = np.all(dones)
@@ -382,9 +383,8 @@ class PPOAgent:
 
                 print(f"Episode#{ep} Reward:{episode_reward} Actions:{action_batch}")
                 ########################
-                if ep % 20 == 0:
-                    with open(f'./all_step/ep{ep}_steps', mode='a') as f:
-                        f.write(f"Episode#{ep} Reward:{episode_reward} Actions:{action_batch}"+"\n")
+                with open(PATH, mode='a') as f:
+                    f.write(f"Episode#{ep} Reward:{episode_reward} Actions:{action_batch}"+"\n")
                 ########################
                 tf.summary.scalar("episode_reward", episode_reward, step=ep)
 
