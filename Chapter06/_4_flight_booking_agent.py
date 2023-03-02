@@ -294,7 +294,7 @@ class PPOAgent:
             f.write("log\n")
         ########################
         with writer.as_default():
-            for ep in range(max_episodes):
+            for ep in range(1, max_episodes + 1):
                 state_batch = []
                 action_batch = []
                 reward_batch = []
@@ -390,8 +390,8 @@ class PPOAgent:
 
                 ########################
                 if ep % 20 == 0: #20エポックごとに保存
-                    self.actor.model.save("saved_model/actor_model")###########保存先のパス
-                    self.critic.model.save("saved_model/critic_mode")###########保存先のパス
+                    self.actor.model.save(f"./saved_model/actor_model{ep}")###########保存先のパス
+                    self.critic.model.save(f"./saved_model/critic_mode{ep}")###########保存先のパス
                     """
                     注意）
                     動作確認してませんが、上記で動かない場合、actorのクラスではなく、モデルだけしか保存できないかもしれません。
