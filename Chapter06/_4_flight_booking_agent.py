@@ -407,5 +407,5 @@ if __name__ == "__main__":
     env = gym.make(env_name)
     cta_agent = PPOAgent(env)
     cta_agent.train()
-    cta_agent.actor.model.save(f"./saved_model/critic_mode.h5")
-    cta_agent.critic.model.save(f"./saved_model/critic_mode.h5")
+    cta_agent.actor.model.save(f"./critic_mode.h5")
+    cta_agent.critic.model.save(f"./critic_mode.h5")
