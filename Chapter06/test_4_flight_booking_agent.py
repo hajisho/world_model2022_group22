@@ -389,33 +389,25 @@ class PPOAgent:
                 tf.summary.scalar("episode_reward", episode_reward, step=ep)
 
 
-                # ########################
-                # if ep % 20 == 0: #20エポックごとに保存
-                #     self.actor.model.save(f"./saved_model/actor_model{ep}")###########保存先のパス
-                #     self.critic.model.save(f"./saved_model/critic_mode{ep}")###########保存先のパス
-                #     """
-                #     注意）
-                #     動作確認してませんが、上記で動かない場合、actorのクラスではなく、モデルだけしか保存できないかもしれません。
-                #     その場合、下記コードで動くと思います
-                #     self.actor.model.save("保存先のパス")###########保存先のパス
-                #     self.critic.model.save("保存先のパス")###########保存先のパス
-                #     """
+                ########################
+                if ep % 100 == 0: #20エポックごとに保存
+                    self.actor.model.save_weights(f"./actor_weights_{ep}.h5")###########保存先のパス
+                    self.critic.model.save_weights(f"./critic_weights_{ep}.h5")###########保存先のパス
                 # ########################
 
 if __name__ == "__main__":
     env_name = "MiniWoBBookFlightVisualEnv-v0"
     env = gym.make(env_name)
     cta_agent = PPOAgent(env)
-    # cta_agent.train(max_episodes=5)
+    cta_agent.train(max_episodes=1000)
 
-    # #訓練後のモデルの重みのみを保存
-    # cta_agent.actor.model.save_weights("actor_weights.h5")    
-    # cta_agent.critic.model.save_weights("critic_weights.h5")
+    #訓練後のモデルの重みのみを保存
+    cta_agent.actor.model.save_weights("actor_weights.h5")    
+    cta_agent.critic.model.save_weights("critic_weights.h5")
 
-    #上で保存した重みを使ってモデルを再構築
-    cta_agent2 = PPOAgent(env)
-    cta_agent2.actor.model.load_weights("actor_weights.h5")
-    cta_agent2.critic.model.load_weights("critic_weights.h5")
-    cta_agent2.actor.model.save("actor_weights.h5")
-    cta_agent2.critic.model.save("critic_model.h5")
+    # #上で保存した重みを使ってモデルを再構築
+    # cta_agent2 = PPOAgent(env)
+    # cta_agent2.actor.model.load_weights("actor_weights.h5")
+    # cta_agent2.critic.model.load_weights("critic_weights.h5")
+
 
