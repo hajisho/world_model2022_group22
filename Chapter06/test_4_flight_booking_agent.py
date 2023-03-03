@@ -406,7 +406,7 @@ if __name__ == "__main__":
     env_name = "MiniWoBBookFlightVisualEnv-v0"
     env = gym.make(env_name)
     cta_agent = PPOAgent(env)
-    cta_agent.train(max_episodes=1000)
+    cta_agent.train(max_episodes=5)
 
     #訓練後のモデルの重みのみを保存
     cta_agent.actor.model.save_weights("actor_weights.h5")    
@@ -416,4 +416,6 @@ if __name__ == "__main__":
     cta_agent2 = PPOAgent(env)
     cta_agent2.actor.model.load_weights("actor_weights.h5")
     cta_agent2.critic.model.load_weights("critic_weights.h5")
+    cta_agent2.actor.model("actor_weights.h5")
+    cta_agent2.critic.model("critic_model.h5")
 
