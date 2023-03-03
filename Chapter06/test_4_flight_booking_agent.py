@@ -416,6 +416,6 @@ if __name__ == "__main__":
     cta_agent2 = PPOAgent(env)
     cta_agent2.actor.model.load_weights("actor_weights.h5")
     cta_agent2.critic.model.load_weights("critic_weights.h5")
-    cta_agent2.actor.model("actor_weights.h5")
-    cta_agent2.critic.model("critic_model.h5")
+    cta_agent2.actor.model.save("actor_weights.h5")
+    cta_agent2.critic.model.save("critic_model.h5")
 
